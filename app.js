@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 //secuirity middlware
 const rateLimit = require("express-rate-limit");
 const helmet = require('helmet');
-const mongoSanitize = require("express-mongo-sanitize");
-const xss = require("xss-clean");
+//const mongoSanitize = require("express-mongo-sanitize");
+//const xss = require("xss-clean");
 const hpp = require("hpp");
 const cors = require("cors");
 //databse
@@ -15,12 +15,13 @@ const mongoose = require('mongoose');
 //secuirity middlware implement
 app.use(cors());
 app.use(helmet());
-app.use(mongoSanitize());
-app.use(xss());
+//app.use(mongoSanitize());
+//app.use(xss());
 app.use(hpp());
 
 // body-parser-implement
 app.use(bodyParser.json());
+//app.use(express.json()); 
 // app.use(express.urlencoded({ extended: true })); // Parses form data
 //request rate limit
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 })
@@ -44,7 +45,7 @@ async function connectDB() {
 connectDB();
 
 //routing implement
-app.use("/api/v1" , router);
+app.use("/api/v1", router);
 
 
 
